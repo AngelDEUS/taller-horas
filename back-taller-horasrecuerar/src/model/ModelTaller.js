@@ -1,0 +1,1 @@
+/* Modelo del taller, conexion a la base de datos */
