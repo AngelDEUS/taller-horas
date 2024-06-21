@@ -1,5 +1,6 @@
-/* Modelo del taller, conexion a la base de datos */
-
+/*
+    Modelo del taller, conexion a la base de datos ***** 
+*/
 
 const mysql  =require('mysql2');
 const myDatabaseName = 'inventario_taller_db';

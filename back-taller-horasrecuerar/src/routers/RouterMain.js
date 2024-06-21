@@ -1,17 +1,30 @@
-/* Router principal del taller */
+/* 
+    Router principal del taller ********
+*/
+
 const express = require('express');
-const rutaController = require('../controllers/ControllerMain')
-const rutaControllerInventario = require('../controllers/InventarioMain')
-const rutaControllerDashboard = require('../controllers/DashboardMain')
+// const rutaController = require('../controllers/ControllerMain')
+const rutaControllerDashboard = require('../controllers/DashboardMain_c')
+const {
+    GETALL_PRODUCTOS,
+    GET_PRODUCTO_BY_ID,
+    GET_PRODUCTO_BY_NAME,
+    CREATE_PRODUCTO,
+    UPDATE_PRODUCTO,
+    DELETE_PRODUCTO
+} = require('../controllers/ControllerMain');
 
 const rutasComplete = express.Router();
 
+// PRODUCTOS
+// rutasComplete.get("/getall", rutaController.GETALL_PRODUCTOS);
 
-rutasComplete.get("/getall", rutaController.GETALL_PRODUCTOS);
-rutasComplete.get("/getallstocks", rutaControllerInventario.GETALL_STOCKS);
-
-// INVENTARIO
-rutasComplete.get("/getinventario_p", rutaControllerInventario.GET_PRODUCTOS_INVENTARIO);
+rutasComplete.get('/productogetall', GETALL_PRODUCTOS);
+rutasComplete.get('/producto/:id', GET_PRODUCTO_BY_ID);
+rutasComplete.get('/productosearch', GET_PRODUCTO_BY_NAME);
+rutasComplete.post('/productocreate', CREATE_PRODUCTO);
+rutasComplete.put('productoup/:id', UPDATE_PRODUCTO);
+rutasComplete.delete('productodel/:id', DELETE_PRODUCTO);
 
 // DASHBOARD
 rutasComplete.get("/dashboardstock", rutaControllerDashboard.GETALL_FULL_STOCK);

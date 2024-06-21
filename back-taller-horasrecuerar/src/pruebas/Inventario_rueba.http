@@ -1,0 +1,25 @@
+### Obtener todos los productos con sus stocks
+GET http://localhost:3001/inventario/getallstocks HTTP/1.1
+
+### Obtener el inventario de productos
+GET http://localhost:3001/inventario/getinventario_p HTTP/1.1
+
+### Crear una nueva entrada en el inventario
+POST http://localhost:3001/inventario/inventariocreate HTTP/1.1
+Content-Type: application/json
+
+{
+  "id_producto": "ZAN-001",
+  "cantidad": 50
+}
+
+### Actualizar una entrada del inventario
+PUT http://localhost:3001/inventario/inventarioup/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "cantidad": 75
+}
+
+### Eliminar una entrada del inventario
+DELETE http://localhost:3001/inventario/inventariodel/1 HTTP/1.1

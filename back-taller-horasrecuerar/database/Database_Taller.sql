@@ -29,8 +29,17 @@ CREATE TABLE inventario (
     cantidad INT NOT NULL,
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
+-- 4 -- Tabla de entrada_roductos
+CREATE TABLE entrada_productos (
+    id_entrada INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    id_producto VARCHAR(10),
+    cantidad_entrada INT NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+);
 
--- 4 -- Tabla de salida
+-- 5 -- Tabla de salida
 CREATE TABLE salida (
     id_salida INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE NOT NULL,
@@ -43,8 +52,10 @@ CREATE TABLE salida (
 
 -- Inserts 
 
+-- 1 -- Estados
 INSERT INTO estado (nombre_estado) VALUES ('Inactivo'), ('Activo'), ('Dañado');
 
+-- 2 -- productos
 INSERT INTO productos (id_producto, nombre_producto, tipo_producto, peso_neto, detalle_peso_neto, precio, id_estado) 
 VALUES 
 ('ARR-001','Arroz', 'Alimento', 1.0, 'kg', 2500, 1),
@@ -58,8 +69,7 @@ VALUES
 ('POL-001','Pollo', 'Carne', 1.5, 'kg', 9500, 1),
 ('PAN-001','Pan', 'Alimento', 0.5, 'kg', 1500, 1);
 
-
-
+-- 3 -- inventario
 INSERT INTO inventario (id_producto, cantidad) 
 VALUES 
 ('ARR-001', 100),
@@ -73,41 +83,21 @@ VALUES
 ('POL-001', 42),
 ('PAN-001', 57); 
 
+-- 4 -- entrada_roductos
+INSERT INTO entrada_productos (fecha, hora, id_producto, cantidad_entrada)
+VALUES
+('2024-06-01', '09:00:00', 'ARR-001', 100),
+('2024-06-01', '09:15:00', 'LEC-001', 12),
+('2024-06-01', '09:30:00', 'AZU-001', 39),
+('2024-06-01', '09:45:00', 'HAR-001', 50),
+('2024-06-01', '10:00:00', 'ACE-001', 10),
+('2024-06-01', '10:15:00', 'SAL-001', 100),
+('2024-06-01', '10:30:00', 'CAF-001', 200),
+('2024-06-01', '10:45:00', 'HUE-001', 70),
+('2024-06-01', '11:00:00', 'POL-001', 42),
+('2024-06-01', '11:15:00', 'PAN-001', 57);
+
+-- 5 -- salida
 INSERT INTO salida (fecha, hora, id_producto, descripcion, cantidad_salida)
 VALUES 
 ('2024-06-20', '10:30:00', 'HAR-001', 'Producto dañado', 5);
-
--- USES
-SELECT * FROM estado;
-SELECT * FROM productos;
-SELECT * FROM inventario;
-SELECT * FROM salida;
-
--- verificar el stock de un producto
-SELECT p.id_producto, p.nombre_producto, i.cantidad AS "Stock_Existente"
-FROM productos p
-JOIN inventario i ON p.id_producto = i.id_producto;
-
--- Lista de inventario
-SELECT p.id_producto, p.nombre_producto, p.tipo_producto , concat(p.peso_neto, ' ', p.detalle_peso_neto ) AS 'Peso_Producto', p.precio, i.cantidad AS "Stock"
-FROM productos p
-JOIN inventario i ON p.id_producto = i.id_producto;
-
--- <---------- DASHBOARD --------------->
--- Total de stock de productos
-SELECT count(*) AS "Productos_Registrados" FROM productos;
--- Total de stock de productos
-SELECT SUM(cantidad) AS "Stocks_Existentes" FROM inventario;
--- Total stock bajo
-SELECT count(*) AS "Productos_Stock_Bajo"  FROM inventario
-where cantidad < 15;
--- Total sin stock
-SELECT count(*) AS "Productos_Sin_Stock"  FROM inventario 
-where cantidad = 0;
--- ---
--- Productos con mayor stock
-SELECT p.id_producto, p.nombre_producto, p.tipo_producto, p.peso_neto, p.detalle_peso_neto, p.precio, i.cantidad AS "Stock_Existente"
-FROM productos p
-JOIN inventario i ON p.id_producto = i.id_producto
-GROUP BY i.cantidad DESC;
-/*-------------------------------------*/

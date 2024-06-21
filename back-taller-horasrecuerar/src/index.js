@@ -1,9 +1,13 @@
-/* Index principal */
+/* 
+    Index principal *********
+*/
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const RouterManin = require('./routers/RouterMain')
+const RouterInventario = require('./routers/RouterInventario')
+const RouterEntradasSalidas = require('./routers/RouterEntradasSalidas')
 dotenv.config();
 
 const app = express();
@@ -18,12 +22,14 @@ const optionsCors = {
 
 // ----> Uses
 app.use(cors(optionsCors));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Modulo de Usuarios
 app.use('/productos', RouterManin)
+app.use('/inventario', RouterInventario)
+app.use('/movimientos', RouterEntradasSalidas)
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true}));
 
 // ---- Puertos Listen
 app.listen(PORT, ()=>{
