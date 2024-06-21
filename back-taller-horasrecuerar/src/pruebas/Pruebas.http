@@ -1,0 +1,11 @@
+###
+GET http://localhost:3001/productos/getall HTTP/1.1
+
+### PRODUCTOS
+GET http://localhost:3001/productos/getallstocks HTTP/1.1
+
+### INVENTARIO
+GET http://localhost:3001/productos/getinventario_p HTTP/1.1
+
+### DASHBOARD - STOCK
+GET http://localhost:3001/productos/dashboardmayorstock HTTP/1.1
