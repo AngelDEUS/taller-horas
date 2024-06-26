@@ -15,11 +15,10 @@ const PORT = process.env.PORT || 3001;
 
 // Cors Configuraion --
 const optionsCors = {
-    origin: `http://localhost:3000`,
-    methods: 'GET, POST, PUT, DELETE',
-    optionSuccessStatus: 200,
+  origin: '*',
+  methods: 'GET, POST, PUT, DELETE',
+  optionSuccessStatus: 200,
 }
-
 // ----> Uses
 app.use(cors(optionsCors));
 app.use(express.json());
@@ -32,7 +31,7 @@ app.use('/movimientos', RouterEntradasSalidas)
 
 
 // ---- Puertos Listen
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log(`\n\n     El servidor funcionando en el puerto: \x1b[33m[${PORT}]\x1b[33m.`);
   console.log(`\n     Local:                  http://localhost:${PORT}\x1b[0m\n`);
 })

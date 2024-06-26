@@ -1,3 +1,8 @@
+### Informes Entradas
+GET http://localhost:3001/movimientos/infoentradas HTTP/1.1
+
+### Informes Salidas
+GET http://localhost:3001/movimientos/infosalidas HTTP/1.1
 ### Obtener todas las entradas de productos
 GET http://localhost:3001/movimientos/entradas HTTP/1.1
 
@@ -21,8 +26,8 @@ Content-Type: application/json
 
 {
   "id_producto": "ARR-001",
-  "cantidad_salida": 10,
+  "cantidad_salida": 15,
   "fecha": "2024-06-20",
   "hora": "15:45:00",
-  "descripcion": "Producto dañado"
+  "descripcion": "Produto se rompio"
 }

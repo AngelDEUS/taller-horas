@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "front-taller-horasrecuperar",
-    "slug": "front-taller-horasrecuperar",
+    "name": "front-taller-horas",
+    "slug": "front-taller-horas",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

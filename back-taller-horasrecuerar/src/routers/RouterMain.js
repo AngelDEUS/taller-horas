@@ -29,5 +29,11 @@ rutasComplete.delete('productodel/:id', DELETE_PRODUCTO);
 // DASHBOARD
 rutasComplete.get("/dashboardstock", rutaControllerDashboard.GETALL_FULL_STOCK);
 rutasComplete.get("/dashboardmayorstock", rutaControllerDashboard.GET_DASHBOARD_TOP_STOCK);
+rutasComplete.get("/dashboard1", rutaControllerDashboard.GET_PRODUCTOS_REGISTRADOS);
+rutasComplete.get("/dashboard2", rutaControllerDashboard.GET_TOTAL_STOCK);
+rutasComplete.get("/dashboard3", rutaControllerDashboard.GET_STOCK_BAJO);
+rutasComplete.get("/dashboard4", rutaControllerDashboard.GET_STOCK_SIN_STOCK);
+
+
 
 module.exports = rutasComplete;

@@ -10,7 +10,17 @@ const {
     CREATE_SALIDA
 } = require('../controllers/EntradasSalidas_c')
 
+
+const {
+    GET_INFORME_ENTRADA,
+    GET_INFORME_SALIDA,
+} = require('../controllers/IndormesController')
+
 const router = express.Router();
+
+// Informes
+router.get('/infoentradas', GET_INFORME_ENTRADA);
+router.get('/infosalidas', GET_INFORME_SALIDA);
 
 // Rutas para entradas
 router.get('/entradas', GETALL_ENTRADAS);
